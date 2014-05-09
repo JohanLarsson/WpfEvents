@@ -1,0 +1,54 @@
+﻿<Window x:Class="TextBoxEvents.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:textBoxEvents="clr-namespace:TextBoxEvents"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        d:DataContext="{d:DesignInstance textBoxEvents:Vm}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="249*"/>
+            <ColumnDefinition Width="268*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="279*"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Grid.Column="0"  Text="{Binding Value}" 
+                  DataContextChanged="TextBox_DataContextChanged" 
+                 GotFocus="TextBox_GotFocus" 
+                 GotKeyboardFocus="TextBox_GotKeyboardFocus" 
+                 Initialized="TextBox_Initialized"
+                 IsEnabledChanged="TextBox_IsEnabledChanged"
+                 IsKeyboardFocusedChanged="TextBox_IsKeyboardFocusedChanged" 
+                 IsKeyboardFocusWithinChanged="TextBox_IsKeyboardFocusWithinChanged" 
+                 Loaded="TextBox_Loaded" LostFocus="TextBox_LostFocus" 
+                 LostKeyboardFocus="TextBox_LostKeyboardFocus" 
+                 ManipulationBoundaryFeedback="TextBox_ManipulationBoundaryFeedback" 
+                 ManipulationCompleted="TextBox_ManipulationCompleted"
+                 ManipulationDelta="TextBox_ManipulationDelta" 
+                 ManipulationInertiaStarting="TextBox_ManipulationInertiaStarting" 
+                 ManipulationStarted="TextBox_ManipulationStarted" 
+                 ManipulationStarting="TextBox_ManipulationStarting" 
+                 PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus" 
+                 PreviewLostKeyboardFocus="TextBox_PreviewLostKeyboardFocus" 
+                 PreviewTextInput="TextBox_PreviewTextInput" 
+                 SelectionChanged="TextBox_SelectionChanged" 
+                 SourceUpdated="TextBox_SourceUpdated" 
+                 TargetUpdated="TextBox_TargetUpdated" 
+                 TextChanged="TextBox_TextChanged" 
+                 TextInput="TextBox_TextInput"
+                 Unloaded="TextBox_Unloaded" Grid.ColumnSpan="2"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="Clear" Click="ButtonBase_OnClick"></Button>
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Events}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Args" DisplayMemberBinding="{Binding Args}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
