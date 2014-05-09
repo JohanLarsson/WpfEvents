@@ -3,6 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type TextChange}">
+            <StackPanel>
+                <TextBlock Text="{Binding AddedLength, StringFormat='AddedLength: {0}'}"/>
+                <TextBlock Text="{Binding Offset, StringFormat='Offset: {0}'}"/>
+                <TextBlock Text="{Binding RemovedLength, StringFormat='Offset: {0}'}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type TextChangedEventArgs}">
+             <StackPanel>
+                <TextBlock Text="{Binding UndoAction}"/>
+                <ListBox ItemsSource="{Binding Changes}"/>
+            </StackPanel>
+         </DataTemplate>
     </Application.Resources>
 </Application>

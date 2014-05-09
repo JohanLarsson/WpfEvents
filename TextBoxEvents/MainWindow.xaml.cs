@@ -143,9 +143,13 @@
             _vm.Add(e);
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void ClearClick(object sender, RoutedEventArgs e)
         {
             _vm.Clear();
+        }
+        private void ChangePropValue(object sender, RoutedEventArgs e)
+        {
+            _vm.Value += "1";
         }
     }
 }

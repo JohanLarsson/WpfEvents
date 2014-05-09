@@ -41,7 +41,11 @@
                  TextChanged="TextBox_TextChanged" 
                  TextInput="TextBox_TextInput"
                  Unloaded="TextBox_Unloaded" Grid.ColumnSpan="2"/>
-        <Button Grid.Row="0" Grid.Column="1" Content="Clear" Click="ButtonBase_OnClick"></Button>
+        <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal">
+            <Button Content="Clear" Click="ClearClick"/>
+            <Button Content="ChangeValue" Click="ChangePropValue"/>
+        </StackPanel>
+
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Events}" >
             <ListView.View>
                 <GridView>
