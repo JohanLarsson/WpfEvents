@@ -1,5 +1,6 @@
 ﻿namespace WpfEvents
 {
+    using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -9,6 +10,11 @@
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
+            container = container as DependencyObject; // Attempt to solve the {DisconnectedItem} issue http://connect.microsoft.com/VisualStudio/feedback/details/619658/wpf-virtualized-control-disconnecteditem-reference-when-datacontext-switch
+            if (container == null)
+            {
+                return _emptyTemplate;
+            }
             if (item == null)
             {
                 return _emptyTemplate;

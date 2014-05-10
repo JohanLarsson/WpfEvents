@@ -28,6 +28,8 @@
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+
         public IEnumerable<Type> Types
         {
             get

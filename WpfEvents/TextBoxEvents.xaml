@@ -140,7 +140,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" CellTemplateSelector="{StaticResource EventNameTemplateSelector}" Width="Auto"/>
-                    <GridViewColumn Header="Args" CellTemplateSelector="{StaticResource EventArgsTemplateSelector}" Width="Auto"/>
+                    <GridViewColumn Header="Args" Width="Auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
