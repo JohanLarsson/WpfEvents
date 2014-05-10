@@ -11,38 +11,79 @@
                 <TextBlock Text="{Binding RemovedLength, StringFormat='RemovedLength: {0}'}"/>
             </StackPanel>
         </DataTemplate>
-
-        <DataTemplate x:Key="TextChangedEventArgsTemplate" DataType="{x:Type TextChangedEventArgs}">
+        
+        <DataTemplate x:Key="SizeTemplate" DataType="{x:Type Size}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="TextChangedEventArgs: "/>
+                <TextBlock Text="{Binding Width,StringFormat='width: {0} '}"/>
+                <TextBlock Text="{Binding Height,StringFormat='height: {0}'}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type TextChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding UndoAction}"/>
                 <ListBox ItemsSource="{Binding Changes}" BorderThickness="0"/>
             </StackPanel>
         </DataTemplate>
-        
 
-        <wpfEvents:EventArgsTemplateSelector x:Key="EventArgsTemplateSelector"
-            TextChangedEventArgsTemplate="{StaticResource TextChangedEventArgsTemplate}"/>
-
-        <DataTemplate x:Key="EventEntryTemplate" DataType="{x:Type wpfEvents:EventEntry}">
-            <ContentPresenter Content="{Binding Args}" ContentTemplateSelector="{StaticResource EventArgsTemplateSelector}"/>
+        <DataTemplate DataType="{x:Type SizeChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding HeightChanged, StringFormat='HeightChanged: {0}'}"/>
+                <TextBlock Text="{Binding WidthChanged, StringFormat=' WidthChanged: {0}'}"/>
+                <TextBlock Text=" PreviousSize: "/>
+                <ContentPresenter Content="{Binding PreviousSize}"/>
+                <TextBlock Text=" NewSize: "/>
+                <ContentPresenter Content="{Binding NewSize}"/>
+            </StackPanel>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type DependencyPropertyChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="OldValue: "/>
+                <ContentPresenter Content="{Binding OldValue}"/>
+                <TextBlock Text=" NewValue: "/>
+                <ContentPresenter Content="{Binding NewValue}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type RoutedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Handled: "/>
+                <TextBlock Text="{Binding Handled}"/>
+                <TextBlock Text="{Binding Source, StringFormat=' Source: {0}'}"/>
+                <TextBlock Text="{Binding OriginalSource, StringFormat=' OriginalSource: {0}'}"/>
+                <!--<ContentPresenter Content="{Binding Source}"/>
+                <TextBlock Text=" OriginalSource: "/>
+                <ContentPresenter Content="{Binding OriginalSource}"/>-->
+            </StackPanel>
+        </DataTemplate>
+
+        <wpfEvents:EventArgsTemplateSelector x:Key="EventArgsTemplateSelector" />
 
         <DataTemplate x:Key="EventArgsNameTemplate" DataType="{x:Type wpfEvents:EventEntry}">
             <TextBlock Text="{Binding Name}"/>
         </DataTemplate>
 
-        <DataTemplate x:Name="RoutedEventArgsNameTemplate" DataType="{x:Type RoutedEventArgs}">
+        <DataTemplate x:Key="RoutedEventArgsNameTemplate" DataType="{x:Type RoutedEventArgs}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding RoutedEvent.OwnerType}"/>
+                <TextBlock Text="{Binding RoutedEvent.OwnerType.Name}"/>
                 <TextBlock Text="."/>
                 <TextBlock Text="{Binding RoutedEvent.Name}"/>
             </StackPanel>
         </DataTemplate>
-
+        
+        <DataTemplate x:Key="DependencyPropertyChangedEventArgsNameTemplate" DataType="{x:Type DependencyPropertyChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Property.OwnerType.Name}"/>
+                <TextBlock Text="."/>
+                <TextBlock Text="{Binding Property.Name}"/>
+            </StackPanel>
+        </DataTemplate>
+        
         <wpfEvents:EventNameTemplateSelector x:Key="EventNameTemplateSelector"
             EventArgsNameTemplate="{StaticResource EventArgsNameTemplate}"
             RoutedEventArgsNameTemplate="{StaticResource RoutedEventArgsNameTemplate}"
+            DependencyPropertyChangedEventArgsNameTemplate="{StaticResource DependencyPropertyChangedEventArgsNameTemplate}"
                                              />
     </Application.Resources>
 </Application>

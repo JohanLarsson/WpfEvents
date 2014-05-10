@@ -5,15 +5,17 @@
 
     public class EventArgsTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate TextChangedEventArgsTemplate { get; set; }
-        public DataTemplate T2 { get; set; }
-        public DataTemplate T3 { get; set; }
-        public DataTemplate T4 { get; set; }
+        private readonly DataTemplate _emptyTemplate = new DataTemplate();
+
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is TextChangedEventArgs)
+            if (item == null)
             {
-                return TextChangedEventArgsTemplate;
+                return _emptyTemplate;
+            }
+            if (item is EventEntry)
+            {
+                return _emptyTemplate;
             }
             return base.SelectTemplate(item, container);
         }

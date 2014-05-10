@@ -20,6 +20,7 @@
         {
             _types = typeof(FrameworkElement).Assembly.GetTypes()
                                          .Where(x => x.IsSubclassOf(typeof(FrameworkElement)))
+                                         .OrderBy(x=>x.Name)
                                          .ToArray();
             _type = typeof (TextBox);
             _xaml = GeneratedCode(_type);

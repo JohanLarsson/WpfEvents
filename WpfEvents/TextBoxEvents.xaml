@@ -139,9 +139,7 @@
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Events}" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" 
-                                    CellTemplateSelector="{StaticResource EventNameTemplateSelector}" Width="Auto"/>
-
+                    <GridViewColumn Header="Name" CellTemplateSelector="{StaticResource EventNameTemplateSelector}" Width="Auto"/>
                     <GridViewColumn Header="Args" CellTemplateSelector="{StaticResource EventArgsTemplateSelector}" Width="Auto"/>
                 </GridView>
             </ListView.View>
