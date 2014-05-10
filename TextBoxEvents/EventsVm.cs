@@ -8,13 +8,14 @@
 
     public class EventsVm : INotifyPropertyChanged
     {
-        private readonly ObservableCollection<EventEntry> _events = new ObservableCollection<EventEntry>();
+        private readonly ObservableCollection<object> _events = new ObservableCollection<object>();
         private string _value;
 
         public EventsVm()
         {
 
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string Value
@@ -31,7 +32,7 @@
             }
         }
 
-        public ObservableCollection<EventEntry> Events
+        public ObservableCollection<object> Events
         {
             get
             {
@@ -39,10 +40,27 @@
             }
         }
 
-        public void Add(object args, [CallerMemberName] string caller = null)
+        public void Add(RoutedEventArgs args)
         {
-            Events.Insert(0, new EventEntry(caller, args));
+            Events.Insert(0, args);
         }
+
+        public void Add(DependencyPropertyChangedEventArgs args)
+        {
+            Events.Insert(0, args);
+        }
+
+        public void Add(string eventName)
+        {
+            Events.Insert(0, new EventEntry(eventName));
+        }
+        public void Clear()
+        {
+            _events.Clear();
+        }
+       
+
+
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -54,9 +72,5 @@
             }
         }
 
-        public void Clear()
-        {
-            _events.Clear();
-        }
     }
 }

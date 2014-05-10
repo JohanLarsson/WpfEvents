@@ -4,12 +4,10 @@
 
     public class EventEntry
     {
-        public EventEntry(string name, object args)
+        public EventEntry(string name)
         {
             Name = name;
-            Args = args;
-        }    
+        }
         public string Name { get; private set; }
-        public object Args { get; private set; }
     }
 }
