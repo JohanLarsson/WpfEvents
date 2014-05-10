@@ -18,7 +18,27 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <ComboBox ItemsSource="{Binding Types}" SelectedItem="{Binding Type}"/>
-                <TextBox Grid.Row="1" Text="{Binding Xaml, Mode=OneWay}"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Subscriptions">
+                        <TextBox Text="{Binding Xaml, Mode=OneWay}" IsReadOnly="True"/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="DataTemplates">
+                        <ListBox ItemsSource="{Binding DataTemplates}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type textBoxEvents:DataTemplateXaml}">
+                                    <GroupBox Header="{Binding Name}">
+                                        <TextBox Text="{Binding Xaml, Mode=OneWay}" IsReadOnly="True"/>
+                                    </GroupBox>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </GroupBox>
+                </Grid>
+
             </Grid>
         </TabItem>
     </TabControl>

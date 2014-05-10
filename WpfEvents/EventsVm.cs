@@ -15,7 +15,7 @@
         public EventsVm(Type type)
         {
             Type = type;
-
+            Filter = new Filter(this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -42,21 +42,32 @@
             }
         }
 
+        public Filter Filter { get; private set; }
+
         public Type Type { get; private set; }
 
         public void Add(RoutedEventArgs args)
         {
-            Events.Insert(0, args);
+            if (Filter.IsKeeper(args))
+            {
+                Events.Insert(0, args);
+            }
         }
 
         public void Add(DependencyPropertyChangedEventArgs args)
         {
-            Events.Insert(0, args);
+            if (Filter.IsKeeper(args))
+            {
+                Events.Insert(0, args);
+            }
         }
 
         public void Add(string eventName)
         {
-            Events.Insert(0, new EventEntry(eventName));
+            if (Filter.IsKeeper(eventName))
+            {
+                Events.Insert(0, new EventEntry(eventName));
+            }
         }
 
         public void Clear()

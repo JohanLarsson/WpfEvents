@@ -36,7 +36,18 @@
                 <ContentPresenter Content="{Binding NewSize}"/>
             </StackPanel>
         </DataTemplate>
-
+        
+        <DataTemplate DataType="{x:Type SelectionChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="RemovedItems: " />
+                <ContentPresenter Content="{Binding RemovedItems, TargetNullValue='null'}" />
+                <TextBlock Text=" AddedItems: " />
+                <ContentPresenter Content="{Binding AddedItems, TargetNullValue='null'}" />
+                <TextBlock Text="Handled: " />
+                <ContentPresenter Content="{Binding Handled, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type DependencyPropertyChangedEventArgs}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="OldValue: "/>

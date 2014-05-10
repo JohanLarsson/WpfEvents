@@ -15,7 +15,7 @@ namespace WpfEvents
     /// </summary>
     public partial class TextBoxEvents : UserControl
     {
-        private readonly EventsVm _vm = new EventsVm();
+        private readonly EventsVm _vm = new EventsVm(typeof(TextBox));
 
         private static readonly Type _disconnectedItemType = typeof(System.Windows.Data.BindingExpressionBase)
             .GetField("DisconnectedItem", BindingFlags.Static | BindingFlags.NonPublic)

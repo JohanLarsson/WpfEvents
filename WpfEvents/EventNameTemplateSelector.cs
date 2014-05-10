@@ -9,7 +9,6 @@
         public DataTemplate RoutedEventArgsNameTemplate { get; set; }
         public DataTemplate EventArgsNameTemplate { get; set; }
         public DataTemplate DependencyPropertyChangedEventArgsNameTemplate { get; set; }
-        public DataTemplate T4 { get; set; }
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             container = container as DependencyObject; // Attempt to solve the {DisconnectedItem} issue http://connect.microsoft.com/VisualStudio/feedback/details/619658/wpf-virtualized-control-disconnecteditem-reference-when-datacontext-switch

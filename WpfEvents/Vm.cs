@@ -3,6 +3,7 @@
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
@@ -10,19 +11,21 @@
     using System.Text;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Input;
     using Annotations;
     public class Vm : INotifyPropertyChanged
     {
         private readonly Type[] _types;
         private Type _type;
         private string _xaml;
+        private readonly ObservableCollection<DataTemplateXaml> _dataTemplates = new ObservableCollection<DataTemplateXaml>();
         public Vm()
         {
             _types = typeof(FrameworkElement).Assembly.GetTypes()
                                          .Where(x => x.IsSubclassOf(typeof(FrameworkElement)))
-                                         .OrderBy(x=>x.Name)
+                                         .OrderBy(x => x.Name)
                                          .ToArray();
-            _type = typeof (TextBox);
+            _type = typeof(TextBox);
             _xaml = GeneratedCode(_type);
 
         }
@@ -36,13 +39,13 @@
                 return _types;
             }
         }
-        
+
         public Type Type
         {
             get { return _type; }
             set
             {
-                if (Equals(value, _type))
+                if (value == _type)
                 {
                     return;
                 }
@@ -51,7 +54,7 @@
                 OnPropertyChanged();
             }
         }
-        
+
         public string Xaml
         {
             get { return _xaml; }
@@ -63,6 +66,13 @@
                 }
                 _xaml = value;
                 OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<DataTemplateXaml> DataTemplates
+        {
+            get
+            {
+                return _dataTemplates;
             }
         }
 
@@ -83,6 +93,7 @@
                                          .ToArray();
             var xamlBuilder = new StringBuilder();
             var codeBuilder = new StringBuilder();
+
             foreach (var eventInfo in eventInfos)
             {
                 if (eventInfo.EventHandlerType == typeof(EventHandler))
@@ -93,7 +104,16 @@
                 {
                     xamlBuilder.AppendLine(eventInfo.Name + @"=""OnEvent""");
                 }
+            }
+            DataTemplates.Clear();
+            var xamls =
+                eventInfos.Where(x => x.DeclaringType != typeof (UIElement)).Select(x => new DataTemplateXaml(x))
+                          .ToArray();
+            var set = new HashSet<DataTemplateXaml>(xamls);
 
+            foreach (var t in set.OrderBy(x => x.Name))
+            {
+                DataTemplates.Add(t);
             }
             string s = xamlBuilder.ToString();
             return s;
