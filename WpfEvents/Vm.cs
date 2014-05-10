@@ -26,9 +26,8 @@
             _xaml = GeneratedCode(_type);
 
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
-
-
 
         public IEnumerable<Type> Types
         {
@@ -37,6 +36,7 @@
                 return _types;
             }
         }
+        
         public Type Type
         {
             get { return _type; }
@@ -51,6 +51,7 @@
                 OnPropertyChanged();
             }
         }
+        
         public string Xaml
         {
             get { return _xaml; }

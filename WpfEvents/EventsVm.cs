@@ -54,13 +54,11 @@
         {
             Events.Insert(0, new EventEntry(eventName));
         }
+
         public void Clear()
         {
             _events.Clear();
         }
-       
-
-
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -71,6 +69,5 @@
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
     }
 }

@@ -55,7 +55,7 @@ namespace WpfEvents
         }
         private void OnLayoutUpdatedEvent(object sender, EventArgs e)
         {
-            //_vm.Add("LayoutUpdated");
+            _vm.Add("LayoutUpdated");
         }
     }
 }
