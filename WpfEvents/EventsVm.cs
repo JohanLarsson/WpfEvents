@@ -1,5 +1,6 @@
 ﻿namespace WpfEvents
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -11,8 +12,9 @@
         private readonly ObservableCollection<object> _events = new ObservableCollection<object>();
         private string _value;
 
-        public EventsVm()
+        public EventsVm(Type type)
         {
+            Type = type;
 
         }
 
@@ -39,6 +41,8 @@
                 return _events;
             }
         }
+
+        public Type Type { get; private set; }
 
         public void Add(RoutedEventArgs args)
         {

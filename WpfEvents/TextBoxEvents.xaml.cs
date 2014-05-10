@@ -51,11 +51,11 @@ namespace WpfEvents
         }
         private void OnInitializedEvent(object sender, EventArgs e)
         {
-            _vm.Add("Initialized");
+            _vm.Add(Filter.Initialized);
         }
         private void OnLayoutUpdatedEvent(object sender, EventArgs e)
         {
-            _vm.Add("LayoutUpdated");
+            _vm.Add(Filter.LayoutUpdated);
         }
     }
 }
