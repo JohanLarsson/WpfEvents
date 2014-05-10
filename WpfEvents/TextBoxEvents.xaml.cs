@@ -16,6 +16,10 @@ namespace WpfEvents
     public partial class TextBoxEvents : UserControl
     {
         private readonly EventsVm _vm = new EventsVm();
+
+        private static readonly Type _disconnectedItemType = typeof(System.Windows.Data.BindingExpressionBase)
+            .GetField("DisconnectedItem", BindingFlags.Static | BindingFlags.NonPublic)
+            .GetValue(null).GetType();
         public TextBoxEvents()
         {
             InitializeComponent();
@@ -35,15 +39,23 @@ namespace WpfEvents
         }
         private void OnEvent(object sender, DependencyPropertyChangedEventArgs e)
         {
+            if (e.GetType() == _disconnectedItemType)
+            {
+                return;
+            }
+            if (e.NewValue.GetType() == _disconnectedItemType)
+            {
+                return;
+            }
             _vm.Add(e);
         }
         private void OnInitializedEvent(object sender, EventArgs e)
         {
-            _vm.Add("Initialized");
+            _vm.Add(Filter.Initialized);
         }
         private void OnLayoutUpdatedEvent(object sender, EventArgs e)
         {
-            //_vm.Add("LayoutUpdated");
+            _vm.Add(Filter.LayoutUpdated);
         }
     }
 }

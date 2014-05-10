@@ -40,13 +40,13 @@
         <DataTemplate DataType="{x:Type DependencyPropertyChangedEventArgs}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="OldValue: "/>
-                <ContentPresenter Content="{Binding OldValue}"/>
+                <ContentPresenter Content="{Binding OldValue, TargetNullValue='null'}"/>
                 <TextBlock Text=" NewValue: "/>
-                <ContentPresenter Content="{Binding NewValue}"/>
+                <ContentPresenter Content="{Binding NewValue, TargetNullValue='null'}"/>
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type RoutedEventArgs}">
+        <DataTemplate x:Key="RoutedEventArgsTemplate" DataType="{x:Type RoutedEventArgs}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Handled: "/>
                 <TextBlock Text="{Binding Handled}"/>

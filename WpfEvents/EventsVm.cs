@@ -1,5 +1,6 @@
 ﻿namespace WpfEvents
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -11,8 +12,9 @@
         private readonly ObservableCollection<object> _events = new ObservableCollection<object>();
         private string _value;
 
-        public EventsVm()
+        public EventsVm(Type type)
         {
+            Type = type;
 
         }
 
@@ -40,6 +42,8 @@
             }
         }
 
+        public Type Type { get; private set; }
+
         public void Add(RoutedEventArgs args)
         {
             Events.Insert(0, args);
@@ -54,13 +58,11 @@
         {
             Events.Insert(0, new EventEntry(eventName));
         }
+
         public void Clear()
         {
             _events.Clear();
         }
-       
-
-
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -71,6 +73,5 @@
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
     }
 }
