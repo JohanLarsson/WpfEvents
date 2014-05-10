@@ -1,21 +1,30 @@
-﻿<Application x:Class="TextBoxEvents.App"
+﻿<Application x:Class="WpfEvents.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:textBoxEvents="clr-namespace:WpfEvents"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type TextChange}">
-            <StackPanel>
-                <TextBlock Text="{Binding AddedLength, StringFormat='AddedLength: {0}'}"/>
-                <TextBlock Text="{Binding Offset, StringFormat='Offset: {0}'}"/>
-                <TextBlock Text="{Binding RemovedLength, StringFormat='Offset: {0}'}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Offset, StringFormat=' Offset: {0} '}"/>
+                <TextBlock Text="{Binding AddedLength, StringFormat='AddedLength: {0} '}"/>
+                <TextBlock Text="{Binding RemovedLength, StringFormat='RemovedLength: {0}'}"/>
             </StackPanel>
         </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type TextChangedEventArgs}">
-             <StackPanel>
+
+        <DataTemplate x:Key="TextChangedEventArgsTemplate" DataType="{x:Type TextChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="TextChangedEventArgs: "/>
                 <TextBlock Text="{Binding UndoAction}"/>
-                <ListBox ItemsSource="{Binding Changes}"/>
+                <ListBox ItemsSource="{Binding Changes}" BorderThickness="0"/>
             </StackPanel>
-         </DataTemplate>
+        </DataTemplate>
+
+        <textBoxEvents:EventTemplateSelector x:Key="EventTemplateSelector"
+            TextChangedEventArgsTemplate="{StaticResource TextChangedEventArgsTemplate}"/>
+
+        <DataTemplate x:Key="EventEntryTemplate" DataType="{x:Type textBoxEvents:EventEntry}">
+            <ContentPresenter Content="{Binding Args}" ContentTemplateSelector="{StaticResource EventTemplateSelector}"/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

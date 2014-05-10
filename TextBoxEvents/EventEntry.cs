@@ -1,4 +1,4 @@
-﻿namespace TextBoxEvents
+﻿namespace WpfEvents
 {
     using System.Windows;
 
