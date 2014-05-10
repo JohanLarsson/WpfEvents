@@ -54,7 +54,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EventEntry.cs" />
-    <Compile Include="EventTemplateSelector.cs" />
+    <Compile Include="EventArgsTemplateSelector.cs" />
+    <Compile Include="EventNameTemplateSelector.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="TextBoxEvents.xaml.cs">
       <DependentUpon>TextBoxEvents.xaml</DependentUpon>

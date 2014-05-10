@@ -1,7 +1,7 @@
 ﻿<Application x:Class="WpfEvents.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:textBoxEvents="clr-namespace:WpfEvents"
+             xmlns:wpfEvents="clr-namespace:WpfEvents"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type TextChange}">
@@ -19,12 +19,30 @@
                 <ListBox ItemsSource="{Binding Changes}" BorderThickness="0"/>
             </StackPanel>
         </DataTemplate>
+        
 
-        <textBoxEvents:EventTemplateSelector x:Key="EventTemplateSelector"
+        <wpfEvents:EventArgsTemplateSelector x:Key="EventArgsTemplateSelector"
             TextChangedEventArgsTemplate="{StaticResource TextChangedEventArgsTemplate}"/>
 
-        <DataTemplate x:Key="EventEntryTemplate" DataType="{x:Type textBoxEvents:EventEntry}">
-            <ContentPresenter Content="{Binding Args}" ContentTemplateSelector="{StaticResource EventTemplateSelector}"/>
+        <DataTemplate x:Key="EventEntryTemplate" DataType="{x:Type wpfEvents:EventEntry}">
+            <ContentPresenter Content="{Binding Args}" ContentTemplateSelector="{StaticResource EventArgsTemplateSelector}"/>
         </DataTemplate>
+
+        <DataTemplate x:Key="EventArgsNameTemplate" DataType="{x:Type wpfEvents:EventEntry}">
+            <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="RoutedEventArgsNameTemplate" DataType="{x:Type RoutedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding RoutedEvent.OwnerType}"/>
+                <TextBlock Text="."/>
+                <TextBlock Text="{Binding RoutedEvent.Name}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <wpfEvents:EventNameTemplateSelector x:Key="EventNameTemplateSelector"
+            EventArgsNameTemplate="{StaticResource EventArgsNameTemplate}"
+            RoutedEventArgsNameTemplate="{StaticResource RoutedEventArgsNameTemplate}"
+                                             />
     </Application.Resources>
 </Application>

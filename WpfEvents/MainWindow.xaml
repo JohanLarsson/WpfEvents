@@ -9,7 +9,7 @@
         d:DataContext="{d:DesignInstance textBoxEvents:Vm}">
     <TabControl>
         <TabItem Header="TextBox">
-            <!--<textBoxEvents:TextBoxEvents/>-->
+            <textBoxEvents:TextBoxEvents/>
         </TabItem>
         <TabItem Header="Code">
             <Grid>

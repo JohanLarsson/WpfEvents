@@ -89,6 +89,7 @@
                 {
                     xamlBuilder.AppendLine(eventInfo.Name + @"=""OnEvent""");
                 }
+
             }
             string s = xamlBuilder.ToString();
             return s;

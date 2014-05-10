@@ -3,7 +3,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    public class EventTemplateSelector : DataTemplateSelector
+    public class EventArgsTemplateSelector : DataTemplateSelector
     {
         public DataTemplate TextChangedEventArgsTemplate { get; set; }
         public DataTemplate T2 { get; set; }
