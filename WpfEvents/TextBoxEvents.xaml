@@ -136,14 +136,7 @@
             <Button Content="ChangeValue" Click="ChangePropValue"/>
         </StackPanel>
 
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Events}" 
-                  VirtualizingStackPanel.IsVirtualizing="False">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" CellTemplateSelector="{StaticResource EventNameTemplateSelector}" Width="Auto"/>
-                    <GridViewColumn Header="Args" Width="Auto"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ContentPresenter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                          Content="{Binding}" ContentTemplate="{StaticResource EventListTemplate}"/>
     </Grid>
 </UserControl>

@@ -9,7 +9,7 @@
 
     public class EventsVm : INotifyPropertyChanged
     {
-        private readonly ObservableCollection<object> _events = new ObservableCollection<object>();
+        private readonly ObservableCollection<IEventEntry> _events = new ObservableCollection<IEventEntry>();
         private string _value;
 
         public EventsVm(Type type)
@@ -34,7 +34,7 @@
             }
         }
 
-        public ObservableCollection<object> Events
+        public ObservableCollection<IEventEntry> Events
         {
             get
             {
@@ -50,7 +50,7 @@
         {
             if (Filter.IsKeeper(args))
             {
-                Events.Insert(0, args);
+                Events.Insert(0, new RoutedEventArgsEntry(args));
             }
         }
 
@@ -58,7 +58,7 @@
         {
             if (Filter.IsKeeper(args))
             {
-                Events.Insert(0, args);
+                Events.Insert(0, new DependencyPropertyChangedEventArgsEntry(args));
             }
         }
 

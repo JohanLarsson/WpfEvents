@@ -54,13 +54,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataTemplateXaml.cs" />
+    <Compile Include="DependencyPropertyChangedEventArgsEntry.cs" />
     <Compile Include="EventEntry.cs" />
     <Compile Include="EventArgsTemplateSelector.cs" />
     <Compile Include="EventInfoExt.cs" />
-    <Compile Include="EventNameTemplateSelector.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="FilterItem.cs" />
+    <Compile Include="IEventEntry.cs" />
+    <Compile Include="OcExt.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="RoutedEventArgsEntry.cs" />
     <Compile Include="TextBoxEvents.xaml.cs">
       <DependentUpon>TextBoxEvents.xaml</DependentUpon>
     </Compile>
