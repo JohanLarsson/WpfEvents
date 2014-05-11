@@ -1,8 +1,8 @@
 ﻿namespace WpfEvents
 {
-    public interface IEventEntry
+    public interface IEventEntry<out T>
     {
         string Name { get; }
-        object Value { get; }
+        T Args { get; }
     }
 }

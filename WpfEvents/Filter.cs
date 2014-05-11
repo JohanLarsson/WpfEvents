@@ -15,10 +15,6 @@
     {
         public const string Initialized = "Initialized";
         public const string LayoutUpdated = "LayoutUpdated";
-        public const string Stylus = "Stylus";
-        public const string Mouse = "Mouse";
-        public const string Keyboard = "Keyboard";
-        private readonly string[] _inputs = { Stylus, Mouse, Keyboard };
         private readonly ObservableCollection<FilterItem> _items = new ObservableCollection<FilterItem>();
 
         private readonly List<FilterItem> _mouseItems = new List<FilterItem>
@@ -133,24 +129,24 @@
             var item = _items.SingleOrDefault(x => Equals(x.Key, args.Property));
             if (item == null)
             {
-                var filterItem = new FilterItem(args.Property, true);
-                if (args.Property.Name.Contains(Mouse))
+                item = new FilterItem(args.Property, true);
+                if (args.Property.Name.Contains(typeof(Mouse).Name))
                 {
-                    _mouseItems.Add(filterItem);
-                    Items.Add(filterItem);
-                    filterItem.Keep = false;
+                    _mouseItems.Add(item);
+                    Items.Add(item);
+                    item.Keep = false;
                 }
-                else if (args.Property.Name.Contains(Keyboard))
+                else if (args.Property.Name.Contains(typeof(Keyboard).Name))
                 {
-                    _keyBoradItems.Add(filterItem);
-                    Items.Add(filterItem);
-                    filterItem.Keep = false;
+                    _keyBoradItems.Add(item);
+                    Items.Add(item);
+                    item.Keep = false;
                 }
-                else if (args.Property.Name.Contains(Stylus))
+                else if (args.Property.Name.Contains(typeof(Stylus).Name))
                 {
-                    _stylusItems.Add(filterItem);
-                    Items.Add(filterItem);
-                    filterItem.Keep = false;
+                    _stylusItems.Add(item);
+                    Items.Add(item);
+                    item.Keep = false;
                 }
                 else
                 {
@@ -165,7 +161,29 @@
             var item = _items.SingleOrDefault(x => Equals(x.Key, args.RoutedEvent));
             if (item == null)
             {
-                return true;
+                item = new FilterItem(args.RoutedEvent, true);
+                if (args.RoutedEvent.Name.Contains(typeof(Mouse).Name))
+                {
+                    _mouseItems.Add(item);
+                    Items.Add(item);
+                    item.Keep = false;
+                }
+                else if (args.RoutedEvent.Name.Contains(typeof(Keyboard).Name))
+                {
+                    _keyBoradItems.Add(item);
+                    Items.Add(item);
+                    item.Keep = false;
+                }
+                else if (args.RoutedEvent.Name.Contains(typeof(Stylus).Name))
+                {
+                    _stylusItems.Add(item);
+                    Items.Add(item);
+                    item.Keep = false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             return item.Keep;
         }

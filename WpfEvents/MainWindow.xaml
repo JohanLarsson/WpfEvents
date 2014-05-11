@@ -11,6 +11,9 @@
         <TabItem Header="TextBox">
             <textBoxEvents:TextBoxEvents/>
         </TabItem>
+        <TabItem Header="CheckBox">
+            <textBoxEvents:CheckBoxEvents/>
+        </TabItem>
         <TabItem Header="Code">
             <Grid>
                 <Grid.RowDefinitions>

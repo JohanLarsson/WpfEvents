@@ -13,6 +13,8 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using Annotations;
+    using Properties;
+
     public class Vm : INotifyPropertyChanged
     {
         private readonly Type[] _types;
@@ -106,9 +108,18 @@
                 }
             }
             DataTemplates.Clear();
-            var xamls =
-                eventInfos.Where(x => x.DeclaringType != typeof (UIElement)).Select(x => new DataTemplateXaml(x))
-                          .ToArray();
+            //var resourceManager = Resources.ResourceManager;
+            //var resourceDictionary = new ResourceDictionary()
+            //{
+            //    Source = new Uri("App.xaml", UriKind.Relative)
+            //};
+            //var keys = new HashSet<object>(resourceDictionary.Keys.Cast<object>());
+            //var key = new System.Windows.DataTemplateKey(typeof(TextBlock));
+
+            //var lackingTemplate = eventInfos.Where(x => !keys.Contains(new DataTemplateKey(x.GetArgsType())))
+            //                                .ToArray();
+            var xamls = eventInfos.Select(x => new DataTemplateXaml(x))
+                                  .ToArray();
             var set = new HashSet<DataTemplateXaml>(xamls);
 
             foreach (var t in set.OrderBy(x => x.Name))

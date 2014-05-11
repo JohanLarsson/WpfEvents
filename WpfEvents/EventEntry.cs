@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class EventEntry : IEventEntry
+    public class EventEntry : IEventEntry<EventArgs>
     {
         public EventEntry(string name)
         {
@@ -11,7 +11,7 @@
 
         public string Name { get; private set; }
 
-        public object Value
+        public EventArgs Args
         {
             get
             {

@@ -9,8 +9,8 @@
 
     public class EventsVm : INotifyPropertyChanged
     {
-        private readonly ObservableCollection<IEventEntry> _events = new ObservableCollection<IEventEntry>();
-        private string _value;
+        private readonly ObservableCollection<IEventEntry<object>> _events = new ObservableCollection<IEventEntry<object>>();
+        private object _value;
 
         public EventsVm(Type type)
         {
@@ -20,7 +20,7 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Value
+        public object Value
         {
             get { return _value; }
             set
@@ -34,7 +34,7 @@
             }
         }
 
-        public ObservableCollection<IEventEntry> Events
+        public ObservableCollection<IEventEntry<object>> Events
         {
             get
             {

@@ -2,13 +2,12 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-
     /// <summary>
-    /// Interaction logic for TextBoxEvents.xaml
+    /// Interaction logic for CheckBoxEvents.xaml
     /// </summary>
-    public partial class TextBoxEvents : EventsUserControl
+    public partial class CheckBoxEvents : EventsUserControl
     {
-        public TextBoxEvents()
+        public CheckBoxEvents()
             : base(typeof(TextBox))
         {
             InitializeComponent();
@@ -16,7 +15,7 @@
         }
         protected override void ChangePropValue(object sender, RoutedEventArgs e)
         {
-            _vm.Value += "1";
+            _vm.Value = !(bool)_vm.Value;
         }
     }
 }

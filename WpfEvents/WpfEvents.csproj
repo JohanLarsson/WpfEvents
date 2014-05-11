@@ -53,11 +53,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CheckBoxEvents.xaml.cs">
+      <DependentUpon>CheckBoxEvents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataTemplateXaml.cs" />
     <Compile Include="DependencyPropertyChangedEventArgsEntry.cs" />
     <Compile Include="EventEntry.cs" />
     <Compile Include="EventArgsTemplateSelector.cs" />
     <Compile Include="EventInfoExt.cs" />
+    <Compile Include="EventsUserControl.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="FilterItem.cs" />
     <Compile Include="IEventEntry.cs" />
@@ -68,7 +72,12 @@
       <DependentUpon>TextBoxEvents.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventsVm.cs" />
+    <Compile Include="TypeNameConverter.cs" />
     <Compile Include="Vm.cs" />
+    <Page Include="CheckBoxEvents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

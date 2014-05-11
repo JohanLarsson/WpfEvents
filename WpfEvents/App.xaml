@@ -5,6 +5,9 @@
              xmlns:generic="clr-namespace:System.Collections.Generic;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <wpfEvents:TypeNameConverter x:Key="TypeNameConverter"/>
+            
+        
         <DataTemplate DataType="{x:Type TextChange}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Offset, StringFormat=' Offset: {0} '}"/>
@@ -13,13 +16,13 @@
             </StackPanel>
         </DataTemplate>
         
-        <DataTemplate x:Key="SizeTemplate" DataType="{x:Type Size}">
+        <DataTemplate DataType="{x:Type Size}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Width,StringFormat='width: {0} '}"/>
                 <TextBlock Text="{Binding Height,StringFormat='height: {0}'}"/>
             </StackPanel>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type TextChangedEventArgs}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding UndoAction}"/>
@@ -27,6 +30,23 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type TextCompositionEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="TextComposition: " />
+                <ContentPresenter Content="{Binding TextComposition, TargetNullValue='null'}" />
+                <TextBlock Text="Text: " />
+                <ContentPresenter Content="{Binding Text, TargetNullValue='null'}" />
+                <TextBlock Text="SystemText: " />
+                <ContentPresenter Content="{Binding SystemText, TargetNullValue='null'}" />
+                <TextBlock Text="ControlText: " />
+                <ContentPresenter Content="{Binding ControlText, TargetNullValue='null'}" />
+                <TextBlock Text="Device: " />
+                <ContentPresenter Content="{Binding Device, TargetNullValue='null'}" />
+                <TextBlock Text="Timestamp: " />
+                <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type SizeChangedEventArgs}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding HeightChanged, StringFormat='HeightChanged: {0}'}"/>
@@ -48,6 +68,49 @@
                 <ContentPresenter Content="{Binding Handled, TargetNullValue='null'}" />
             </StackPanel>
         </DataTemplate>
+       
+        <DataTemplate DataType="{x:Type DataTransferEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="TargetObject: " />
+                <ContentPresenter Content="{Binding TargetObject, TargetNullValue='null'}" />
+                <TextBlock Text="Property: " />
+                <ContentPresenter Content="{Binding Property, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+        
+        <!--<DataTemplate DataType="{x:Type RequestBringIntoViewEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="TargetObject: " />
+                <ContentPresenter Content="{Binding TargetObject, TargetNullValue='null'}" />
+                <TextBlock Text="TargetRect: " />
+                <ContentPresenter Content="{Binding TargetRect, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type KeyboardFocusChangedEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="OldFocus: " />
+                <ContentPresenter Content="{Binding OldFocus, TargetNullValue='null'}" />
+                <TextBlock Text="NewFocus: " />
+                <ContentPresenter Content="{Binding NewFocus, TargetNullValue='null'}" />
+                <TextBlock Text="KeyboardDevice: " />
+                <ContentPresenter Content="{Binding KeyboardDevice, TargetNullValue='null'}" />
+                <TextBlock Text="Device: " />
+                <ContentPresenter Content="{Binding Device, TargetNullValue='null'}" />
+                <TextBlock Text="Timestamp: " />
+                <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+               
+        <DataTemplate DataType="{x:Type wpfEvents:RoutedEventArgsEntry}">
+            <StackPanel Orientation="Horizontal">
+                <ContentPresenter Content="{Binding Args}"/>
+                <TextBlock Text=" Handled: "/>
+                <TextBlock Text="{Binding Args.Handled}"/>
+                <TextBlock Text="{Binding Args.Source, StringFormat=' Source: {0}', Converter={StaticResource TypeNameConverter}}"/>
+                <TextBlock Text="{Binding Args.OriginalSource, StringFormat=' OriginalSource: {0}', Converter={StaticResource TypeNameConverter}}"/>
+            </StackPanel>
+        </DataTemplate>
         
         <DataTemplate DataType="{x:Type wpfEvents:DependencyPropertyChangedEventArgsEntry}">
             <StackPanel Orientation="Horizontal">
@@ -55,18 +118,6 @@
                 <ContentPresenter Content="{Binding OldValue, TargetNullValue='null'}"/>
                 <TextBlock Text=" NewValue: "/>
                 <ContentPresenter Content="{Binding NewValue, TargetNullValue='null'}"/>
-            </StackPanel>
-        </DataTemplate>
-
-        <DataTemplate x:Key="RoutedEventArgsTemplate" DataType="{x:Type RoutedEventArgs}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Handled: "/>
-                <TextBlock Text="{Binding Handled}"/>
-                <TextBlock Text="{Binding Source, StringFormat=' Source: {0}'}"/>
-                <TextBlock Text="{Binding OriginalSource, StringFormat=' OriginalSource: {0}'}"/>
-                <!--<ContentPresenter Content="{Binding Source}"/>
-                <TextBlock Text=" OriginalSource: "/>
-                <ContentPresenter Content="{Binding OriginalSource}"/>-->
             </StackPanel>
         </DataTemplate>
 
@@ -78,16 +129,29 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                        <GridViewColumn Header="Args" Width="Auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        <GridViewColumn Header="Args" Width="Auto"/>
                     </GridView>
                 </ListView.View>
             </ListView>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="FilterTemplate" DataType="{x:Type wpfEvents:EventsVm}">
+            <Expander  Header="Filter" ExpandDirection="Left">
+                <ListView  ItemsSource="{Binding Filter.Items}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Key}"/>
+                            <GridViewColumn Header="Use">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type wpfEvents:FilterItem}">
+                                        <CheckBox IsChecked="{Binding Keep}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Expander>
         </DataTemplate>
     </Application.Resources>
 </Application>
