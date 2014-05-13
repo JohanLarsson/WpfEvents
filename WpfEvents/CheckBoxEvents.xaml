@@ -17,6 +17,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="279*"/>
         </Grid.RowDefinitions>
+
         <CheckBox x:Name="TextBox" Grid.Row="0" Grid.Column="0"  IsChecked="{Binding Value}"
                 Checked="OnEvent"
                 Click="OnEvent"

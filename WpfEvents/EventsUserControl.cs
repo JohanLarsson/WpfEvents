@@ -8,7 +8,7 @@
     {
         protected readonly EventsVm _vm;
 
-        public EventsUserControl(Type type)
+        protected EventsUserControl(Type type)
         {
             _vm =  new EventsVm(type);
         }
@@ -22,6 +22,7 @@
         protected void OnEvent(object sender, RoutedEventArgs e)
         {
             _vm.Add(e);
+            e.Handled = false;
         }
         protected void OnEvent(object sender, DependencyPropertyChangedEventArgs e)
         {

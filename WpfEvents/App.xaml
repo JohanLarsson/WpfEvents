@@ -101,7 +101,115 @@
                 <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
             </StackPanel>
         </DataTemplate>
-               
+
+        <DataTemplate DataType="{x:Type KeyEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="InputSource: " />
+                <ContentPresenter Content="{Binding InputSource, TargetNullValue='null', Converter={StaticResource TypeNameConverter}}" />
+                <TextBlock Text="Key: " />
+                <ContentPresenter Content="{Binding Key, TargetNullValue='null'}" />
+                <TextBlock Text="ImeProcessedKey: " />
+                <ContentPresenter Content="{Binding ImeProcessedKey, TargetNullValue='null'}" />
+                <TextBlock Text="SystemKey: " />
+                <ContentPresenter Content="{Binding SystemKey, TargetNullValue='null'}" />
+                <TextBlock Text="DeadCharProcessedKey: " />
+                <ContentPresenter Content="{Binding DeadCharProcessedKey, TargetNullValue='null'}" />
+                <TextBlock Text="KeyStates: " />
+                <ContentPresenter Content="{Binding KeyStates, TargetNullValue='null'}" />
+                <TextBlock Text="IsRepeat: " />
+                <ContentPresenter Content="{Binding IsRepeat, TargetNullValue='null'}" />
+                <TextBlock Text="IsDown: " />
+                <ContentPresenter Content="{Binding IsDown, TargetNullValue='null'}" />
+                <TextBlock Text="IsUp: " />
+                <ContentPresenter Content="{Binding IsUp, TargetNullValue='null'}" />
+                <TextBlock Text="IsToggled: " />
+                <ContentPresenter Content="{Binding IsToggled, TargetNullValue='null'}" />
+                <TextBlock Text="KeyboardDevice: " />
+                <ContentPresenter Content="{Binding KeyboardDevice, TargetNullValue='null'}" />
+                <TextBlock Text="Device: " />
+                <ContentPresenter Content="{Binding Device, TargetNullValue='null'}" />
+                <TextBlock Text="Timestamp: " />
+                <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type MouseButtonEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="ChangedButton: " />
+                <ContentPresenter Content="{Binding ChangedButton, TargetNullValue='null'}" />
+                <TextBlock Text="ButtonState: " />
+                <ContentPresenter Content="{Binding ButtonState, TargetNullValue='null'}" />
+                <TextBlock Text="ClickCount: " />
+                <ContentPresenter Content="{Binding ClickCount, TargetNullValue='null'}" />
+                <TextBlock Text="MouseDevice: " />
+                <ContentPresenter Content="{Binding MouseDevice, TargetNullValue='null'}" />
+                <TextBlock Text="StylusDevice: " />
+                <ContentPresenter Content="{Binding StylusDevice, TargetNullValue='null'}" />
+                <TextBlock Text="LeftButton: " />
+                <ContentPresenter Content="{Binding LeftButton, TargetNullValue='null'}" />
+                <TextBlock Text="RightButton: " />
+                <ContentPresenter Content="{Binding RightButton, TargetNullValue='null'}" />
+                <TextBlock Text="MiddleButton: " />
+                <ContentPresenter Content="{Binding MiddleButton, TargetNullValue='null'}" />
+                <TextBlock Text="XButton1: " />
+                <ContentPresenter Content="{Binding XButton1, TargetNullValue='null'}" />
+                <TextBlock Text="XButton2: " />
+                <ContentPresenter Content="{Binding XButton2, TargetNullValue='null'}" />
+                <TextBlock Text="Device: " />
+                <ContentPresenter Content="{Binding Device, TargetNullValue='null'}" />
+                <TextBlock Text="Timestamp: " />
+                <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type MouseWheelEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Delta: " />
+                <ContentPresenter Content="{Binding Delta, TargetNullValue='null'}" />
+                <TextBlock Text="MouseDevice: " />
+                <ContentPresenter Content="{Binding MouseDevice, TargetNullValue='null'}" />
+                <TextBlock Text="StylusDevice: " />
+                <ContentPresenter Content="{Binding StylusDevice, TargetNullValue='null'}" />
+                <TextBlock Text="LeftButton: " />
+                <ContentPresenter Content="{Binding LeftButton, TargetNullValue='null'}" />
+                <TextBlock Text="RightButton: " />
+                <ContentPresenter Content="{Binding RightButton, TargetNullValue='null'}" />
+                <TextBlock Text="MiddleButton: " />
+                <ContentPresenter Content="{Binding MiddleButton, TargetNullValue='null'}" />
+                <TextBlock Text="XButton1: " />
+                <ContentPresenter Content="{Binding XButton1, TargetNullValue='null'}" />
+                <TextBlock Text="XButton2: " />
+                <ContentPresenter Content="{Binding XButton2, TargetNullValue='null'}" />
+                <TextBlock Text="Device: " />
+                <ContentPresenter Content="{Binding Device, TargetNullValue='null', Converter={StaticResource TypeNameConverter}}" />
+                <TextBlock Text="Timestamp: " />
+                <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type MouseEventArgs}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="MouseDevice: " />
+                <ContentPresenter Content="{Binding MouseDevice, TargetNullValue='null'}" />
+                <TextBlock Text="StylusDevice: " />
+                <ContentPresenter Content="{Binding StylusDevice, TargetNullValue='null'}" />
+                <TextBlock Text="LeftButton: " />
+                <ContentPresenter Content="{Binding LeftButton, TargetNullValue='null'}" />
+                <TextBlock Text="RightButton: " />
+                <ContentPresenter Content="{Binding RightButton, TargetNullValue='null'}" />
+                <TextBlock Text="MiddleButton: " />
+                <ContentPresenter Content="{Binding MiddleButton, TargetNullValue='null'}" />
+                <TextBlock Text="XButton1: " />
+                <ContentPresenter Content="{Binding XButton1, TargetNullValue='null'}" />
+                <TextBlock Text="XButton2: " />
+                <ContentPresenter Content="{Binding XButton2, TargetNullValue='null'}" />
+                <TextBlock Text="Device: " />
+                <ContentPresenter Content="{Binding Device, TargetNullValue='null'}" />
+                <TextBlock Text="Timestamp: " />
+                <ContentPresenter Content="{Binding Timestamp, TargetNullValue='null'}" />
+            </StackPanel>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type wpfEvents:RoutedEventArgsEntry}">
             <StackPanel Orientation="Horizontal">
                 <ContentPresenter Content="{Binding Args}"/>
